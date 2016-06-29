@@ -5,7 +5,7 @@
       <name>DRILL</name>
       <displayName>Drill</displayName>
       <comment>Schema-free SQL Query Engine for Hadoop, NoSQL and Cloud Storage</comment>
-      <version>1.6.0</version>
+      <version>1.7.0</version>
       <components>
         <component>  
           <name>DRILL_MASTER</name>
