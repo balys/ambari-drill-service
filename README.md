@@ -20,10 +20,10 @@ Ambari service to run and manage Apache Drill. For more information about Apache
 
 Download the Drill Service:
 
-<code>
+```
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
 git clone https://github.com/dvergari/ambari-drill-service.git /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/DRILL 
-</code>
+```
 
 Restart ambari:
 
