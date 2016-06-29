@@ -27,11 +27,11 @@ class Master(Script):
 
     self.create_linux_user(params.drill_user, params.drill_group)
 
-    Directory([params.drill_install_dir,params.drill_log_dir,'/home/sample_data'], mode=0755, owner=params.drill_user, group=params.drill_group, recursive=True)
+    Directory([params.drill_install_dir,params.drill_log_dir,'/opt/apache-drill/sample-data'], mode=0755, owner=params.drill_user, group=params.drill_group, recursive=True)
     File(params.drill_log_file, mode=0644, owner=params.drill_user, group=params.drill_group, content='')
     
     if not os.path.exists(params.drill_temp_file):
-      Execute('wget http://it.apache.contactlab.it/drill/drill-1.6.0/apache-drill-1.6.0.tar.gz -O ' + params.drill_temp_file + ' -a ' + params.drill_log_file, user=params.drill_user)
+      Execute('wget http://apache.mirror.anlx.net/drill/drill-1.7.0/apache-drill-1.7.0.tar.gz -O ' + params.drill_temp_file + ' -a ' + params.drill_log_file, user=params.drill_user)
     Execute('tar -xzvf ' + params.drill_temp_file + ' -C ' + params.drill_install_dir + ' >> ' + params.drill_log_file + ' 2>&1')
 
     self.configure(env, True)
@@ -39,12 +39,12 @@ class Master(Script):
   def stop(self, env):
     import params
     self.configure(env)
-    Execute(params.drill_install_dir + '/apache-drill-1.6.0/bin/drillbit.sh stop', user=params.drill_user)
+    Execute(params.drill_install_dir + '/apache-drill-1.7.0/bin/drillbit.sh stop', user=params.drill_user)
 
   def start(self, env):
     import params
     self.configure(env)
-    Execute(params.drill_install_dir + '/apache-drill-1.6.0/bin/drillbit.sh start', user=params.drill_user)
+    Execute(params.drill_install_dir + '/apache-drill-1.7.0/bin/drillbit.sh start', user=params.drill_user)
 
   def status(self, env):
     import params
@@ -61,17 +61,17 @@ class Master(Script):
     if isInstall:
       Execute('chown -R ' + params.drill_user + ':' + params.drill_group + ' ' + params.drill_install_dir)
 
-    File(params.drill_install_dir + '/apache-drill-1.6.0/conf/drill-override.conf', content=drill_override_content, owner=params.drill_user, group=params.drill_group)
-    File(params.drill_install_dir + '/apache-drill-1.6.0/conf/drill-env.sh', content=drill_env_content, owner=params.drill_user, group=params.drill_group)
+    File(params.drill_install_dir + '/apache-drill-1.7.0/conf/drill-override.conf', content=drill_override_content, owner=params.drill_user, group=params.drill_group)
+    File(params.drill_install_dir + '/apache-drill-1.7.0/conf/drill-env.sh', content=drill_env_content, owner=params.drill_user, group=params.drill_group)
     XmlConfig("hdfs-site.xml", 
-              conf_dir=params.drill_install_dir + '/apache-drill-1.6.0/conf',
+              conf_dir=params.drill_install_dir + '/apache-drill-1.7.0/conf',
               configurations=params.config['configurations']['hdfs-site'],
               configuration_attributes=params.config['configuration_attributes']['hdfs-site'],
               owner=params.drill_user,
               group=params.drill_group,
               mode=0644)
     XmlConfig("core-site.xml", 
-              conf_dir=params.drill_install_dir + '/apache-drill-1.6.0/conf',
+              conf_dir=params.drill_install_dir + '/apache-drill-1.7.0/conf',
               configurations=params.config['configurations']['core-site'],
               configuration_attributes=params.config['configuration_attributes']['core-site'],
               owner=params.drill_user,
