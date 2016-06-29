@@ -14,8 +14,8 @@ drill_install_dir = config['configurations']['drill-ambari-config']['drill_insta
 drill_temp_file = config['configurations']['drill-ambari-config']['drill_temp_file']
 hadoop_core_site = config['configurations']['drill-ambari-config']['hadoop_core_site']
 hadoop_hdfs_site = config['configurations']['drill-ambari-config']['hadoop_hdfs_site']
-#drill_pid_file = os.path.join(drill_install_dir,'apache-drill-1.6.0','drillbit.pid')
-drill_pid_file = '/opt/apache-drill/apache-drill-1.6.0/drillbit.pid'
+#drill_pid_file = os.path.join(drill_install_dir,'apache-drill-1.7.0','drillbit.pid')
+drill_pid_file = '/opt/apache-drill/apache-drill-1.7.0/drillbit.pid'
 
 ## drill-env.xml
 drill_user = config['configurations']['drill-env']['drill_user']
