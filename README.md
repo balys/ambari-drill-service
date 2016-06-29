@@ -22,7 +22,7 @@ Download the Drill Service:
 
 ```
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
-git clone https://github.com/dvergari/ambari-drill-service.git /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/DRILL 
+git clone https://github.com/balys/ambari-drill-service.git /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/DRILL 
 ```
 
 Restart ambari:
